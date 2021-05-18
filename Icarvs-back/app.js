@@ -5,7 +5,6 @@ const helmet = require("helmet")
 const app = express()
 const createError = require('http-errors');
 const path = require('path');
-// const connection = require('./src/connection')
 const cors = require('cors')
 const connection = require('./src/connection')
 
