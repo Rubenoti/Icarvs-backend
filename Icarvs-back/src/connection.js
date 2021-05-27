@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 const password = "icarvsPass"
-const dbname = "Users"
+const dbname = "icarvs"
 const user = "Icarvs"
 const host = "cluster0.grpbn.mongodb.net"
 
