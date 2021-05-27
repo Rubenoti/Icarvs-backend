@@ -1,7 +1,7 @@
 const controller = {}
 const User = require("../models/user")
 
-controller.signup = async (req, res) => {
+controller.registro = async (req, res) => {
     const email = req.body.email
     const password = req.body.password
     if (!email || !password) {

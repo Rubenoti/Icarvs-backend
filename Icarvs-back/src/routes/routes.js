@@ -4,7 +4,7 @@ const passport = require('../auth/auth')
 const userController = require("../controllers/user")
 
 
-router.post("/user", userController.signup)
+router.post("/user", userController.registro)
 
 
 
