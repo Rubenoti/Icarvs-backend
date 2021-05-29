@@ -16,4 +16,17 @@ authJWT.createToken = (user) => {
     ]
 }
 
+authJWT.createToken = (company) => {
+    let expToken = moment().add(7, 'days').unix() // current time + 7 day ahead
+    return [
+        JWT.sign({
+            sub: company._id,
+            iat: moment().unix(),
+            exp: expToken,
+        }, config.secret),
+        expToken
+    ]
+}
+
+
 module.exports = authJWT
