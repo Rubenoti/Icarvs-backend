@@ -19,11 +19,17 @@ controller.registro = async (req, res) => {
         const user = new User({ email: email, pass: pass })
         await user.save()
         const data = await User.findOne({ email: email })
-        res.send({ status: "ok", data: data })
+        const dataToken = authJWT.createToken(user)
+
+        return res.send({
+            access_token: dataToken[0],
+            expires_in: dataToken[1]
+        })
     } catch (err) {
         console.log(err)
         res.status(500).send("Error")
     }
+
 
 }
 
@@ -60,6 +66,34 @@ controller.login = async (req, res) => {
             expires_in: dataToken[1]
         })
 
+    } catch (err) {
+        console.log(err)
+        res.status(500).send("Error")
+    }
+}
+
+controller.guardarDatos = async (req, res) => {
+    const id = req.user.id
+    const ciudad = req.body.ciudad
+    const provincia = req.body.provincia
+    const codigoPostal = req.body.codigoPostal
+    const calle = req.body.calle
+    const numero = req.body.numero
+    const puerta = req.body.puerta
+    const tiempo = req.body.tiempo
+    const donde = req.body.donde
+    const hayElectricidad = req.body.hayElectricidad
+
+    if (!ciudad || !provincia || !codigoPostal || !calle || !numero || !puerta || !tiempo || !donde || !hayElectricidad) {
+        console.log("Datos obligatorios")
+        res.status(400).send("Faltan datos")
+        return
+    }
+    try {
+        await User.findByIdAndUpdate(id,
+            { ciudad: ciudad, provincia: provincia, codigoPostal: codigoPostal, calle: calle, numero: numero, puerta: puerta, tiempo: tiempo, donde: donde, hayElectricidad: hayElectricidad })
+
+        res.status(201).send()
     } catch (err) {
         console.log(err)
         res.status(500).send("Error")

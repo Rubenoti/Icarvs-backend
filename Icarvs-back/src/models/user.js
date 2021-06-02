@@ -5,6 +5,15 @@ const SchemaMongo = mongoose.Schema
 const Schema = new SchemaMongo({
     email: { type: String, require: true, unique: true },
     pass: { type: String, require: true },
+    ciudad: String,
+    provincia: String,
+    codigoPostal: Number,
+    calle: String,
+    numero: Number,
+    puerta: String,
+    tiempo: String,
+    donde: String,
+    hayElectricidad: String,
 })
 
 Schema.pre('save', async function (next) {

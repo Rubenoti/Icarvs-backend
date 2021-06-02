@@ -21,7 +21,7 @@ passport.use('auth', new JwtStrategy({
 }))
 
 
-passport.use('auth', new JwtStrategy({
+passport.use('authCompany', new JwtStrategy({
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: config.secret,
 }, async (payload, done) => {
@@ -35,6 +35,10 @@ passport.use('auth', new JwtStrategy({
         done(error, false)
     }
 }))
+
+const authCompany = passport.authenticate('authCompany', {
+    session: false,
+})
 
 const auth = passport.authenticate('auth', {
     session: false,
