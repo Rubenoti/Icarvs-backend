@@ -11,7 +11,7 @@ router.post("/user", userController.registro)
 router.post("/login", userController.login)
 
 router.put("/data", passport.auth, userController.guardarDatos)
-
+router.get("/data", passport.auth, userController.getUser)
 
 router.post("/company", companyController.registroEmpresa)
 router.post("/loginCompany", companyController.loginEmpresa)

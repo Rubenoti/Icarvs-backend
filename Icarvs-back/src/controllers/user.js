@@ -100,6 +100,17 @@ controller.guardarDatos = async (req, res) => {
     }
 }
 
+controller.getUser = async (req, res) => {
+    const id = req.user.id
+
+    try {
+        const user = await User.findById(id)
+        res.json(user)
+    } catch (err) {
+        console.log(err)
+        res.status(500).send({ error: "El perfil no existe" })
+    }
+}
 
 
 
